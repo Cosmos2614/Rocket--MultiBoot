@@ -9,8 +9,8 @@ terminal-box: "terminal_box_*.png"
   width = 70%
   top = 15%
   height = 70%
-  item_color = "#f5f5f5" 
-  selected_item_color = "#ffff00"  
+  item_color = "#f5f5f5"
+  selected_item_color = "#ffff00"
   item_height = 38
   item_padding = 15
   item_spacing = 5
@@ -33,67 +33,63 @@ terminal-box: "terminal_box_*.png"
   height = 20
   text_color = "#000"
   fg_color = "#fff"
-  bg_color = "#00baff"
+  bg_color = "#ffcc00"
   text = "@TIMEOUT_NOTIFICATION_MIDDLE@"
   align = "center"
 }
 
-+ hbox{
-    left = 3%
-    top = 92%
-    width = 10%
-    height = 25
-    + label {text = " https://github.com/Cosmos2614/Rocket--MultiBoot/releases/tag/1.0" color = "yellow" align = "left"}
++ hbox {
+  left = 3%
+  top = 92%
+  width = 94%
+  height = 25
+  + label {text = " https://github.com/Cosmos2614/Rocket--MultiBoot/releases/tag/1.0" color = "#ffff00" align = "left"}
 }
 
-
-+ hbox{ 
-    left = 3%
-    top = 95%
-    width = 10%
-    height = 25
-    + label {text = "@VTOY_HOTKEY_TIP@" color = "white" align = "left"} 
++ hbox {
+  left = 3%
+  top = 95%
+  width = 94%
+  height = 25
+  + label {text = "@VTOY_HOTKEY_TIP@" color = "#ffffff" align = "left"}
 }
 
-
-+ hbox{ 
-    left = 20%
-    top = 95%-25
-    width = 10%
-    height = 25
-    + label {text = "@VTOY_MEM_DISK@" color = "red" align = "left"} 
++ hbox {
+  left = 45%
+  top = 95%
+  width = 25%
+  height = 25
+  + label {text = "@VTOY_MEM_DISK@" color = "#ff6666" align = "left"}
 }
 
-
-+ hbox{ 
-    left = 20%
-    top = 95%-50
-    width = 10%
-    height = 25
-    + label {text = "@VTOY_ISO_RAW@" color = "red" align = "left"} 
++ hbox {
+  left = 45%
+  top = 92%
+  width = 25%
+  height = 25
+  + label {text = "@VTOY_ISO_RAW@" color = "#ff6666" align = "left"}
 }
 
-
-+ hbox{ 
-    left = 20%+200
-    top = 95%-50
-    width = 10%
-    height = 25
-    + label {text = "@VTOY_GRUB2_MODE@" color = "red" align = "left"} 
++ hbox {
+  left = 72%
+  top = 92%
+  width = 25%
+  height = 25
+  + label {text = "@VTOY_GRUB2_MODE@" color = "#ff6666" align = "left"}
 }
 
-+ hbox{ 
-    left = 20%+200
-    top = 95%-25
-    width = 10%
-    height = 25
-    + label {text = "@VTOY_WIMBOOT_MODE@" color = "red" align = "left"} 
++ hbox {
+  left = 72%
+  top = 95%
+  width = 25%
+  height = 25
+  + label {text = "@VTOY_WIMBOOT_MODE@" color = "#ff6666" align = "left"}
 }
 
-+ hbox{ 
-    left = 85%
-    top = 55 
-    width = 10%
-    height = 25
-    + label {text = "@VTOY_ISO_UEFI_DRV@" color = "red" align = "left"} 
++ hbox {
+  left = 85%
+  top = 3%
+  width = 14%
+  height = 25
+  + label {text = "@VTOY_ISO_UEFI_DRV@" color = "#ff6666" align = "left"}
 }

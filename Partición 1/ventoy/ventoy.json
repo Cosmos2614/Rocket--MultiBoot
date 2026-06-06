@@ -1,15 +1,13 @@
 {
-"control":[
-{ "VTOY_DEFAULT_MENU_MODE": "1" },
-{ "VTOY_DEFAULT_SEARCH_ROOT": "/YUMI" }
-],
-"theme":{
-"file": "/ventoy/theme/YUMI/theme.txt",
-"ventoy_color": "#000"
-},
-"persistence": [
-{"":"","":""},
-{
-}
-]
+  "control": [
+    { "VTOY_DEFAULT_MENU_MODE": "1" },
+    { "VTOY_DEFAULT_SEARCH_ROOT": "/YUMI" },
+    { "VTOY_MENU_TIMEOUT": "30" },
+    { "VTOY_SECONDARY_BOOT_MENU": "0" },
+    { "VTOY_SORT_CASE_INSENSITIVE": "1" }
+  ],
+  "theme": {
+    "file": "/ventoy/theme/YUMI/theme.txt",
+    "ventoy_color": "#000"
+  }
 }
