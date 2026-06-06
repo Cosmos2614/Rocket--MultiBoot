@@ -1,0 +1,54 @@
+name: Build Windows Installer
+
+# Disparadores:
+#   - Manual: Actions → "Build Windows Installer" → Run workflow
+#   - Automático: al hacer push con cambios en src/ o en los archivos del USB
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - "claude/**"
+    paths:
+      - "src/**"
+      - "EFI/**"
+      - "ventoy/**"
+      - "tool/**"
+      - "Partición 1/**"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar PyInstaller
+        run: pip install pyinstaller
+
+      - name: Compilar .exe
+        run: pyinstaller src/installer.spec
+
+      - name: Verificar que el .exe existe
+        run: |
+          if (!(Test-Path "dist\RocketMultiBoot-Installer.exe")) {
+            Write-Error "El .exe no se generó."
+            exit 1
+          }
+          $size = (Get-Item "dist\RocketMultiBoot-Installer.exe").Length / 1MB
+          Write-Host "Tamaño del .exe: $([math]::Round($size, 1)) MB"
+        shell: pwsh
+
+      - name: Subir .exe como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: RocketMultiBoot-Installer
+          path: dist/RocketMultiBoot-Installer.exe
+          retention-days: 30
+          if-no-files-found: error
