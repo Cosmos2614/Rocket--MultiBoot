@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <!-- USB drive + flecha de descarga -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M12,4 L12,14 M8,10 L12,14 L16,10" />
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M5,17 L19,17 L19,20 L5,20 Z"
+        android:strokeWidth="1.5" android:strokeColor="#FFFFFF" android:fillColor="#00000000"/>
+</vector>

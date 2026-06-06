@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#1A1A1A</color>
+    <color name="bg_card">#111111</color>
+    <color name="bg_dark">#0D0D0D</color>
+    <color name="accent">#FFCC00</color>
+    <color name="text">#F0F0F0</color>
+    <color name="text_dim">#AAAAAA</color>
+    <color name="ok">#55DD55</color>
+    <color name="err">#FF5555</color>
+    <color name="warn">#FFCC00</color>
+    <color name="btn_danger_bg">#3A1111</color>
+    <color name="btn_danger_fg">#FF8888</color>
+</resources>

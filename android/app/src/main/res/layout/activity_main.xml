@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg">
+
+    <!-- Cabecera -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_dark"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="14dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🚀  Rocket MultiBoot"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent" />
+    </LinearLayout>
+
+    <!-- Contenido principal (ocupa el espacio restante) -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- ═══════════════ SECCIÓN INSTALAR ═══════════════ -->
+        <ScrollView
+            android:id="@+id/installSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Estado root + USB -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_card"
+                    android:padding="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvRootStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Verificando permisos…"
+                        android:textColor="@color/text_dim"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvUsbStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Buscando USB…"
+                        android:textColor="@color/text_dim"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- Spinner de dispositivos (solo root) -->
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinnerDisk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/bg_card"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:popupBackground="@color/bg_card" />
+
+                <!-- Nota sin root -->
+                <TextView
+                    android:id="@+id/tvNoRoot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/bg_card"
+                    android:padding="12dp"
+                    android:text="@string/hint_root_required"
+                    android:textColor="@color/warn"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <!-- Botones de acción -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnInstall"
+                        style="@style/BtnAccent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/btn_install"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btnCopyConfig"
+                        style="@style/BtnSecondary"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/btn_copy_config"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnRefreshUsb"
+                    style="@style/BtnSecondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/btn_refresh" />
+
+                <!-- Barra de progreso -->
+                <ProgressBar
+                    android:id="@+id/progressInstall"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="12dp"
+                    android:progressTint="@color/accent"
+                    android:progressBackgroundTint="@color/bg_card"
+                    android:max="100" />
+
+                <!-- Log -->
+                <TextView
+                    android:id="@+id/tvInstallLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/bg_card"
+                    android:fontFamily="monospace"
+                    android:padding="10dp"
+                    android:textColor="@color/text"
+                    android:textSize="11sp"
+                    android:minLines="8" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ═══════════════ SECCIÓN ISOs ═══════════════ -->
+        <LinearLayout
+            android:id="@+id/isosSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <!-- Seleccionar unidad USB -->
+            <Button
+                android:id="@+id/btnSelectUsb"
+                style="@style/BtnSecondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_select_usb" />
+
+            <TextView
+                android:id="@+id/tvSelectedUsb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/text_dim"
+                android:textSize="12sp"
+                android:text="Ninguna unidad seleccionada" />
+
+            <!-- Lista de ISOs -->
+            <ListView
+                android:id="@+id/listIsos"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_card"
+                android:divider="@color/bg"
+                android:dividerHeight="1dp"
+                android:textColor="@color/text" />
+
+            <!-- Log + progreso ISOs -->
+            <TextView
+                android:id="@+id/tvIsoLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_card"
+                android:fontFamily="monospace"
+                android:padding="8dp"
+                android:textColor="@color/text"
+                android:textSize="11sp"
+                android:minLines="2" />
+
+            <ProgressBar
+                android:id="@+id/progressIso"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="4dp"
+                android:progressTint="@color/accent"
+                android:progressBackgroundTint="@color/bg_card"
+                android:max="100" />
+
+            <!-- Botones ISOs -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAddIso"
+                    style="@style/BtnAccent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btn_add_iso" />
+
+                <Button
+                    android:id="@+id/btnRemoveIso"
+                    style="@style/BtnDanger"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/btn_remove_iso" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- Barra de navegación inferior -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_dark"
+        app:itemIconTint="@color/text"
+        app:itemTextColor="@color/text"
+        app:itemActiveIndicatorColor="@color/accent"
+        app:menu="@menu/bottom_nav" />
+
+</LinearLayout>

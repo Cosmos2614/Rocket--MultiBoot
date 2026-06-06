@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Rocket MultiBoot</string>
+    <string name="tab_install">Instalar</string>
+    <string name="tab_isos">ISOs</string>
+    <string name="btn_install">▶  INSTALAR EN USB</string>
+    <string name="btn_copy_config">Copiar config al USB</string>
+    <string name="btn_refresh">↺ Buscar USB</string>
+    <string name="btn_add_iso">+ Añadir ISO</string>
+    <string name="btn_remove_iso">✕ Eliminar</string>
+    <string name="btn_select_usb">Seleccionar unidad USB…</string>
+    <string name="hint_root_required">Instalar requiere root. Sin root puedes copiar la config a un USB ya preparado.</string>
+    <string name="no_usb">Sin USB conectado</string>
+    <string name="confirm_install_title">⚠ Confirmar instalación</string>
+    <string name="confirm_install_msg">Se BORRARÁN todos los datos del disco:\n\n%1$s\n\n¿Continuar?</string>
+    <string name="yes">Sí</string>
+    <string name="cancel">Cancelar</string>
+</resources>

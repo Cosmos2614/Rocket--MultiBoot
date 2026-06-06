@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Cohete amarillo centrado -->
+    <path
+        android:fillColor="#FFCC00"
+        android:pathData="M54,18 L66,42 L66,66 L54,78 L42,66 L42,42 Z" />
+    <!-- Aletas -->
+    <path
+        android:fillColor="#E6B800"
+        android:pathData="M42,60 L30,78 L42,72 Z" />
+    <path
+        android:fillColor="#E6B800"
+        android:pathData="M66,60 L78,78 L66,72 Z" />
+    <!-- Ventana del cohete -->
+    <path
+        android:fillColor="#1A1A1A"
+        android:pathData="M54,42 m-6,0 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0" />
+</vector>

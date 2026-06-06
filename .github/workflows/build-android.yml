@@ -1,0 +1,87 @@
+name: Build Android APK
+
+# Disparadores:
+#   - Manual:     Actions → "Build Android APK" → Run workflow
+#   - Automático: push con cambios en android/ o en archivos de arranque
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - "claude/**"
+    paths:
+      - "android/**"
+      - "EFI/**"
+      - "ventoy/**"
+      - "tool/**"
+      - "Partición 1/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      # ── 2. Java 17 ───────────────────────────────────────────────────────────
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      # ── 3. Android SDK ───────────────────────────────────────────────────────
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      # ── 4. Gradle ────────────────────────────────────────────────────────────
+      - name: Instalar Gradle 8.6
+        run: |
+          wget -q "https://services.gradle.org/distributions/gradle-8.6-bin.zip" \
+               -O /tmp/gradle.zip
+          unzip -q /tmp/gradle.zip -d /opt/gradle
+          echo "/opt/gradle/gradle-8.6/bin" >> "$GITHUB_PATH"
+
+      # ── 5. Copiar archivos de arranque a assets ───────────────────────────
+      - name: Copiar archivos de arranque → assets
+        run: |
+          mkdir -p android/app/src/main/assets
+          cp -r EFI     android/app/src/main/assets/
+          cp -r ventoy  android/app/src/main/assets/
+          cp -r tool    android/app/src/main/assets/
+          cp -r "Partición 1/ventoy" android/app/src/main/assets/config
+          echo "Assets copiados:"
+          find android/app/src/main/assets -maxdepth 1 -mindepth 1 | sort
+
+      # ── 6. Caché de Gradle ────────────────────────────────────────────────
+      - name: Caché de dependencias Gradle
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ hashFiles('android/**/*.gradle.kts') }}
+          restore-keys: gradle-
+
+      # ── 7. Compilar APK debug ─────────────────────────────────────────────
+      - name: Compilar APK (debug)
+        working-directory: android
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      # ── 8. Verificar y renombrar APK ──────────────────────────────────────
+      - name: Renombrar APK
+        run: |
+          APK=$(find android/app/build/outputs/apk/debug -name "*.apk" | head -1)
+          echo "APK generado: $APK"
+          SIZE=$(du -h "$APK" | cut -f1)
+          echo "Tamaño: $SIZE"
+          cp "$APK" RocketMultiBoot-Android.apk
+
+      # ── 9. Subir artefacto ────────────────────────────────────────────────
+      - name: Subir APK como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: RocketMultiBoot-Android
+          path: RocketMultiBoot-Android.apk
+          retention-days: 30
+          if-no-files-found: error
